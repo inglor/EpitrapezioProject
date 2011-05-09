@@ -1,0 +1,20 @@
+body, html, div { font:11px sans-serif; margin:0; padding:0; }
+table, tr, td { margin:0; padding:0; text-align:left; white-space: nowrap; }
+.va_top { vertical-align: top; }
+.filler_width { width: 100% }
+canvas {
+	margin:0;
+	padding:0;
+	border:2px ridge;
+	text-align:center;
+	vertical-align:middle;
+	font:11px sans-serif;
+}
+input { font:11px sans-serif; }
+input.on { border:2px inset; color:#000000; background:#ece3cc; }
+input.off { border:2px outset; color:#000000; background:#f8f5e3; }
+#debug { width: 100%; height: 200px; overflow:scroll; }
+.framed { border:2px ridge; }
+.align_center { text-align:center; }
+.align_right { text-align:right; }
+

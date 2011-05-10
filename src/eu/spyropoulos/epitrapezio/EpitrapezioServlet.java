@@ -22,7 +22,16 @@ public class EpitrapezioServlet extends HttpServlet {
 			resp.getWriter().println("<p>Please <a href=\"" +
 					userService.createLoginURL(getGameUriWithGameParam(req, gameKey)) + "\">sign in</a>.</p>");
 			return;
-		}/*
+		}
+		
+		String bkgImage = req.getParameter("bkg_image");
+		if (bkgImage.isEmpty()) {
+		    resp.sendRedirect("/select_board.jsp");
+		} else {
+		    resp.sendRedirect("/edit_board.jsp");
+		}
+		
+		/*
 
 	    PersistenceManager pm = PMF.get().getPersistenceManager();
 

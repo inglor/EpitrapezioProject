@@ -24,8 +24,9 @@ public class EpitrapezioServlet extends HttpServlet {
 			return;
 		}
 		
+		
 		String bkgImage = req.getParameter("bkg_image");
-		if (bkgImage.isEmpty()) {
+		if (bkgImage == null) {
 		    resp.sendRedirect("/select_board.jsp");
 		} else {
 		    resp.sendRedirect("/edit_board.jsp");

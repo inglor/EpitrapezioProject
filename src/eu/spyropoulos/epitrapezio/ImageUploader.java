@@ -7,6 +7,7 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +22,15 @@ public class ImageUploader extends HttpServlet {
         Map<String, BlobKey> blobs = blobstoreService.getUploadedBlobs(req);
         BlobKey blobKey = blobs.get("bkg_image");
         
-        // TODO: Create a new Board instance with the new image.
-        //if (blobKey == null) {
-        //    res.sendRedirect("/epitrapezio");
-        //} else {
-        //    res.sendRedirect("/epitrapezio?bkg_image=" + blobKey.getKeyString());
-        //}
+        if (blobKey == null) {
+            res.sendRedirect("/epitrapezio");
+        } else {
+            Board board = new Board();
+            board.setImage(blobKey);
+            board.setName(blobKey.getKeyString());
+            EntityManager em = EMF.get().createEntityManager();
+            em.persist(board);
+            res.sendRedirect("/epitrapezio?bkg_image=" + blobKey.getKeyString());
+        }
     }
 }

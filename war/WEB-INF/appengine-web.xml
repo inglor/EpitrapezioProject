@@ -3,6 +3,10 @@
 	<application>epitrapezioproject</application>
 	<version>1</version>
 	
+	<static-files>
+  		<include path="/gadget/img/favicon.ico" />
+	</static-files>
+	
 	<!-- Configure java.util.logging -->
 	<system-properties>
 		<property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>

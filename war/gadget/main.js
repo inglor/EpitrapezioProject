@@ -51,7 +51,7 @@ function main() {
    canvas = document.getElementById('canvas');
    coords = document.getElementById('coords');
    ctx = canvas.getContext('2d');
-   img.src = 'http://iniju-board-game-maps.googlecode.com/svn/trunk/gadget/img/map.jpg';
+   img.src = '/serve?blob-key=' + request.getParameter('bkg_image') //'http://iniju-board-game-maps.googlecode.com/svn/trunk/gadget/img/map.jpg';
 	initSpinBt();
 	img.onload = function() {
 		canvas.width = img.width;

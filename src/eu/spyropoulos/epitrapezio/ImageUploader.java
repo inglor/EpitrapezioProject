@@ -28,21 +28,8 @@ public class ImageUploader extends HttpServlet {
             Board board = new Board();
             board.setImage(blobKey);
             board.setName(blobKey.getKeyString());
-            EntityManager em = EMF.get().createEntityManager();
-            try {
-                if (em.find(UserPrefs.class, user.getEmail()) == null) {
-                
-                userPrefs = new UserPrefs(user.getEmail());
-                userPrefs.setUser(user);
-                
-                } else {
-                userPrefs = em.find(UserPrefs.class, user.getEmail());
-                }
-            } finally {
-                em.close();
-            }
-            em.persist(board);
-            res.sendRedirect("/epitrapezio?bkg_image=" + blobKey.getKeyString());
+            board.save();
+            res.sendRedirect("/epitrapezio?bkg_image=" + board.getImage());
         }
     }
 }

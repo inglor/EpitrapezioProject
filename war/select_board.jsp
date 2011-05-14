@@ -29,8 +29,15 @@
 		return formOK;
 	}
 
-	function enableUpload() {
-		document.getElementById("upload_div").style.display ="block";
+	function toggleUpload() {
+		var upload_div = document.getElementById("upload_div")
+		if (document.getElementById("radio_other").checked) {
+			upload_div.style.display = "block";
+		} else {
+			upload_div.style.display = "none";
+			document.getElementById("image_name").value = "";
+			document.getElementById("image_browse").value = "";
+		}
 	}
 </script>
 </head>
@@ -47,7 +54,7 @@
 	    String name = (String) result.getProperty("name");
 	%>
 	<tr>
-		<td><input type="radio" name="bkg_image" value="<%= key %>"></td>
+		<td><input type="radio" name="bkg_image" value="<%= key %>" onChange="toggleUpload();"></td>
 		<td>...</td>
 		<td><%= name %></td>
 	</tr>
@@ -55,7 +62,7 @@
 	}
 	%>
 	<tr>
-		<td><input type="radio" name="bkg_image" value="upload" onChange="enableUpload();"></td>
+		<td><input type="radio" id="radio_other" name="bkg_image" value="upload" onChange="toggleUpload();"></td>
 		<td>...</td>
 		<td>Upload</td>
 	</tr>

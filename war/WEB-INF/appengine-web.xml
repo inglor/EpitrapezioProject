@@ -5,6 +5,7 @@
 	
 	<static-files>
   		<include path="/favicon.ico" />
+  		<include path="/gadget/main.css" />
 	</static-files>
 	
 	<!-- Configure java.util.logging -->

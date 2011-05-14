@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
 <%@ page import="com.google.appengine.api.datastore.DatastoreService"%>
@@ -19,16 +18,27 @@
 <html>
 <head>
 <title>Epitrapezio App Engine v 1.0</title>
-<link rel="stylesheet" type="text/css" href="gadget/main.css" />
+<link rel="stylesheet" type="text/css" href="/gadget/main.css" />
+<script type="text/javascript">
+	function checkEmpty() {
+		var formOK = true;
+
+		if(document.getElementById("image_name").value == "") formOK = false;
+		
+
+		if(formOK == false) alert("Please Select or upload an image.");
+		return formOK;
+	}
+</script>
 </head>
 <body>
+	<form action="<%= blobstoreService.createUploadUrl("/upload_bkg_img") %>" method="post" enctype="multipart/form-data" onSubmit="return checkEmpty();">
 	<p>Select background image, or upload a new one</p>
-	<form method="post" action="/epitrapezio">
 	<table>
 		<th>
 			<td></td></td>Thumbnail</td><td>Name</td>
 		</th>
-<%
+	<%
 	for (Entity result : pq.asIterable()) {
 	    String key = (String) result.getProperty("key");
 	    String name = (String) result.getProperty("name");
@@ -42,11 +52,10 @@
 	}
 	%>
 </table>
-</form>
 <br>
-<form
-	action="<%= blobstoreService.createUploadUrl("/upload_bkg_img") %>"
-	method="post" enctype="multipart/form-data"><input type="file"
-	name="bkg_image"> <input type="submit" value="Submit">
+	<input type="text" name="image_name" id="image_name"></input>
+	<input type="file"	name="bkg_image_browse" id="image_browse">
+	<br/>
+	<input type="submit" value="Submit">
 </form>
 </body>

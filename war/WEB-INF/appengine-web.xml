@@ -4,7 +4,7 @@
 	<version>1</version>
 	
 	<static-files>
-  		<include path="/gadget/img/favicon.ico" />
+  		<include path="/favicon.ico" />
 	</static-files>
 	
 	<!-- Configure java.util.logging -->

@@ -23,16 +23,19 @@
 	function checkEmpty() {
 		var formOK = true;
 
-		if(document.getElementById("image_name").value == "") formOK = false;
-		
+		if(document.getElementById("image_name").value == "" || document.bkg_image.selected == null) formOK = false;
 
 		if(formOK == false) alert("Please Select or upload an image.");
 		return formOK;
 	}
+
+	function enableUpload() {
+		document.getElementById("upload_div").style.display ="block";
+	}
 </script>
 </head>
 <body>
-	<form action="<%= blobstoreService.createUploadUrl("/upload_bkg_img") %>" method="post" enctype="multipart/form-data" onSubmit="return checkEmpty();">
+	<form name="form1" action="<%= blobstoreService.createUploadUrl("/upload_bkg_img") %>" method="post" enctype="multipart/form-data" onSubmit="return checkEmpty();">
 	<p>Select background image, or upload a new one</p>
 	<table>
 		<th>
@@ -51,10 +54,17 @@
 	<%
 	}
 	%>
+	<tr>
+		<td><input type="radio" name="bkg_image" value="upload" onChange="enableUpload();"></td>
+		<td>...</td>
+		<td>Upload</td>
+	</tr>
 </table>
 <br>
-	<input type="text" name="image_name" id="image_name"></input>
-	<input type="file"	name="bkg_image_browse" id="image_browse">
+	<div id="upload_div" style="display:none;">
+		Name: <input type="text" name="image_name" id="image_name">
+		<br/>Location:<input type="file" name="bkg_image_browse" id="image_browse">
+	</div>
 	<br/>
 	<input type="submit" value="Submit">
 </form>

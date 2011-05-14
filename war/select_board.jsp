@@ -24,7 +24,7 @@
 </head>
 <body>
 	<p>Select background image, or upload a new one</p>
-	<form method="post" action="/epitrapezio">"
+	<form method="post" action="/epitrapezio">
 	<table>
 		<th>
 			<td></td></td>Thumbnail</td><td>Name</td>

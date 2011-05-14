@@ -5,6 +5,7 @@ import com.google.appengine.api.datastore.Key;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,5 +35,14 @@ public class Board {
     }
     public void setImage(BlobKey image) {
         this.image = image;
+    }
+    
+    public void save() {
+        EntityManager em = EMF.get().createEntityManager();
+        try {
+            em.persist(this);
+        } finally {
+            em.close();
+        }
     }
 }

@@ -39,7 +39,7 @@
 	<p>Select background image, or upload a new one</p>
 	<table>
 		<th>
-			<td></td></td>Thumbnail</td><td>Name</td>
+			<td></td><td>Thumbnail</td><td>Name</td>
 		</th>
 	<%
 	for (Entity result : pq.asIterable()) {

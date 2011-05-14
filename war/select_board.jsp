@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 
-
-<%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory" %>
-<%@ page import="com.google.appengine.api.blobstore.BlobstoreService" %>
-<%@ page import="com.google.appengine.api.datastore.DatastoreService" %>
-<%@ page import="com.google.appengine.api.datastore.DatastoreServiceFactory" %>
-<%@ page import="com.google.appengine.api.datastore.Entity" %>
-<%@ page import="com.google.appengine.api.datastore.PreparedQuery" %>
-<%@ page import="com.google.appengine.api.datastore.Query" %>
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
+<%@ page import="com.google.appengine.api.datastore.DatastoreService"%>
+<%@ page import="com.google.appengine.api.datastore.DatastoreServiceFactory"%>
+<%@ page import="com.google.appengine.api.datastore.Entity"%>
+<%@ page import="com.google.appengine.api.datastore.PreparedQuery"%>
+<%@ page import="com.google.appengine.api.datastore.Query"%>
 
 <%
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -19,8 +18,8 @@
 
 <html>
 <head>
-	<title>Epitrapezio App Engine v 1.0</title>
-	<link rel="stylesheet" type="text/css" href="gadget/main.css" />
+<title>Epitrapezio App Engine v 1.0</title>
+<link rel="stylesheet" type="text/css" href="gadget/main.css" />
 </head>
 <body>
 	<p>Select background image, or upload a new one</p>
@@ -33,20 +32,21 @@
 	for (Entity result : pq.asIterable()) {
 	    String key = (String) result.getProperty("key");
 	    String name = (String) result.getProperty("name");
-%>
-		<tr>
-			<td><input type="radio" name="bkg_image" value="<%= key %>"></td>
-			<td>...</td>
-			<td><%= name %></td>
-		</tr>
-<%
+	%>
+	<tr>
+		<td><input type="radio" name="bkg_image" value="<%= key %>"></td>
+		<td>...</td>
+		<td><%= name %></td>
+	</tr>
+	<%
 	}
-%>
-	</table>
-	</form>
-	<br>
-	<form action="<%= blobstoreService.createUploadUrl("/upload_bkg_img") %>" method="post" enctype="multipart/form-data">
-		<input type="file" name="bkg_image">
-		<input type="submit" value="Submit">"
-	</form>
-</body>	
+	%>
+</table>
+</form>
+<br>
+<form
+	action="<%= blobstoreService.createUploadUrl("/upload_bkg_img") %>"
+	method="post" enctype="multipart/form-data"><input type="file"
+	name="bkg_image"> <input type="submit" value="Submit">
+</form>
+</body>

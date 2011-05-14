@@ -22,8 +22,9 @@
 <script type="text/javascript">
 	function checkEmpty() {
 		var formOK = true;
-
-		if(document.getElementById("image_name").value == "" || document.bkg_image.selected == null) formOK = false;
+		if(document.getElementById("image_name").value == "" || document.bkg_image.selected == null) {
+			formOK = false;
+		}
 
 		if(formOK == false) alert("Please Select or upload an image.");
 		return formOK;
@@ -42,11 +43,10 @@
 </script>
 </head>
 <body>
-	<form name="form1" action="<%= blobstoreService.createUploadUrl("/upload_bkg_img") %>" method="post" enctype="multipart/form-data" onSubmit="return checkEmpty();">
 	<p>Select background image, or upload a new one</p>
 	<table>
 		<th>
-			<td></td></td>Thumbnail</td><td>Name</td>
+			</td>Thumbnail</td><td>Name</td>
 		</th>
 	<%
 	for (Entity result : pq.asIterable()) {
@@ -54,21 +54,22 @@
 	    String name = (String) result.getProperty("name");
 	%>
 	<tr>
-		<td><input type="radio" name="bkg_image" value="<%= key %>" onChange="toggleUpload();"></td>
 		<td>...</td>
-		<td><%= name %></td>
+		<td><a href="epitrapezio?bkg_image<%= key %>"><%= name %></a></td>
 	</tr>
 	<%
 	}
 	%>
-	<tr>
+	<!-- <tr>
 		<td><input type="radio" id="radio_other" name="bkg_image" value="upload" onChange="toggleUpload();"></td>
 		<td>...</td>
 		<td>Upload</td>
 	</tr>
+	-->
 </table>
 <br>
-	<div id="upload_div" style="display:none;">
+<form name="form1" action="<%= blobstoreService.createUploadUrl("/upload_bkg_img") %>" method="post" enctype="multipart/form-data" onSubmit="return checkEmpty();">
+	<div id="upload_div" style="display:block;">
 		Name: <input type="text" name="image_name" id="image_name">
 		<br/>Location:<input type="file" name="bkg_image_browse" id="image_browse">
 	</div>

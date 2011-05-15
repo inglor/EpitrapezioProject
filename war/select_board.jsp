@@ -64,7 +64,7 @@
 	%>
 	<tr>
 		<td>...</td>
-		<td><a href="/epitrapezio?bkg_image<%= key %>"><%= name %></a></td>
+		<td><a href="/epitrapezio?bkg_image=<%= key %>"><%= name %></a></td>
 	</tr>
 	<%
 	}

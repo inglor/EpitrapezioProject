@@ -3,6 +3,8 @@ package eu.spyropoulos.epitrapezio;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.logging.Logger;
+
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,8 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 @SuppressWarnings("serial")
 public class EpitrapezioServlet extends HttpServlet {
+    private static final Logger log = Logger.getLogger(EpitrapezioServlet.class.getName());
+
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException { 
 		final UserService userService = UserServiceFactory.getUserService();
 		final URI uriWithOptionalGameParam;
@@ -26,6 +30,7 @@ public class EpitrapezioServlet extends HttpServlet {
 		}
 		
 		String bkgImage = req.getParameter("bkg_image");
+		log.info("img = " + bkgImage);
 		if (bkgImage == null) {
 		    resp.sendRedirect("/select_board.jsp");
 		} else {

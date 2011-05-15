@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
@@ -24,12 +25,11 @@ public class EpitrapezioServlet extends HttpServlet {
 			return;
 		}
 		
-		
 		String bkgImage = req.getParameter("bkg_image");
 		if (bkgImage == null) {
 		    resp.sendRedirect("/select_board.jsp");
 		} else {
-		    resp.sendRedirect("/edit_board.jsp");
+		    resp.sendRedirect("/edit_board.jsp?bkg_image="+bkgImage);
 		}
 		
 		/*

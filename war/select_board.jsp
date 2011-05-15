@@ -6,11 +6,20 @@
 <%@ page import="com.google.appengine.api.datastore.Entity"%>
 <%@ page import="com.google.appengine.api.datastore.PreparedQuery"%>
 <%@ page import="com.google.appengine.api.datastore.Query"%>
+<%@ page import="com.google.appengine.api.blobstore.BlobKey"%>
+<%@ page import="eu.spyropoulos.epitrapezio.Board"%>
 
 <%
-	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-	Query q = new Query("Board");
-	PreparedQuery pq = datastore.prepare(q);
+	//DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	//Query q = new Query("Board");
+	//PreparedQuery pq = datastore.prepare(q);
+	
+	//EntityManager em = EMF.get().createEntityManager();
+    //try {
+    //    em.persist(this);
+    //} finally {
+    //    em.close();
+    //}
 
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 %>
@@ -45,17 +54,17 @@
 <body>
 	<p>Select background image, or upload a new one</p>
 	<table>
-		<th>
-			</td>Thumbnail</td><td>Name</td>
-		</th>
+		<tr>
+			</th>Thumbnail</th><th>Name</th>
+		</tr>
 	<%
-	for (Entity result : pq.asIterable()) {
-	    String key = (String) result.getProperty("key");
-	    String name = (String) result.getProperty("name");
+	for (Board result : Board.getAll()) {//pq.asIterable()) {
+	    String key = result.getImage().getKeyString();
+	    String name = result.getName();
 	%>
 	<tr>
 		<td>...</td>
-		<td><a href="epitrapezio?bkg_image<%= key %>"><%= name %></a></td>
+		<td><a href="/epitrapezio?bkg_image<%= key %>"><%= name %></a></td>
 	</tr>
 	<%
 	}

@@ -25,7 +25,7 @@
 						spinVarChanged(n, this[0].id);
 					}
 				});
-				
+				main('/serve?blob-key=' + "<%= request.getParameter("bkg_image") %>");
 			});
 		</script>
 </head>

@@ -53,7 +53,9 @@ public class Board {
         EntityManager em = EMF.get().createEntityManager();
         try {
             Query q = em.createQuery("select from " + Board.class.getName());
-            return q.getResultList();
+            List<Board> results = (List<Board>) q.getResultList();
+            results.size();
+            return results;
         } finally {
             em.close();
         }
